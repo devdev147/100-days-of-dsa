@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct node {
+    int data;
+    struct node* next;
+};
+
+struct node *front = NULL, *rear = NULL;
+
+// Enqueue
+void enqueue(int x) {
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp->data = x;
+    temp->next = NULL;
+
+    if (rear == NULL) {
+        front = rear = temp;
+    } else {
+        rear->next = temp;
+        rear = temp;
+    }
+}
+
+// Display queue
+void display() {
+    struct node* temp = front;
+
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+}
+
+// Main
+int main() {
+    int n, x;
+
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &x);
+        enqueue(x);
+    }
+
+    display();
+
+    return 0;
+}
